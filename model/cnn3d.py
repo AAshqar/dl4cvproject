@@ -46,12 +46,12 @@ class CNN3d(nn.Module):
 
     def forward(self, x):
         '''
-        To do: Check x dimension!!
+        To do: Check batch size!!
         '''
         if self.hidden == None:
-            # Initialize according to x dimension
-            # hidden = (autograd.Variable(torch.randn(1, 1, 3)),
-            # autograd.Variable(torch.randn((1, 1, 3))))
+            # Initialize according to the assumption that batch size is always 1
+            hidden = (autograd.Variable(torch.randn(LSTM_layers, 1, self.hidden_size)), 
+                      autograd.Variable(torch.randn((LSTM_layers, 1, self.hidden_size))))
         
         x = self.conv1(x)
         x = self.bn1(x)
