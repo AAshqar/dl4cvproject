@@ -65,9 +65,9 @@ class CNN3d(nn.Module):
 
         x = self.avgpool(x)
 
-        x = x.view(x.size(0), -1)
+        x = x.view(x.size(0), 1, -1)
         
-        out, x = self.lstm(x, self.hidden)
+        x, last_hidden = self.lstm(x, self.hidden)
 
         return x
 
